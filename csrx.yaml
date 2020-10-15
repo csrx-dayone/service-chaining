@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csrx
+  annotations:
+    k8s.v1.cni.cncf.io/networks: network-left,network-right
+spec:
+  containers:
+  - name: csrx
+    image: csrx:20.3R1.8
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      privileged: true
+    env:
+    - name: CSRX_DATA_PORT_1
+      value: eth1
+    - name: CSRX_DATA_PORT_2
+      value: eth2
